@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/layoutPadrao'">
+	
+<head></head>
+
+
+<body>
+	<section class="aw-layout-content  js-content" layout:fragment="conteudo">
+
+
+		<div class="page-header">
+			<div class="container-fluid">
+				<h1>
+					Cadastro de Cliente
+				</h1>
+			</div>
+		</div>
+
+		<div class="container-fluid">
+		
+			<!--  <div class="alert  alert-danger  alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<i class="fa  fa-exclamation-circle"></i> Já existe um produto com o nome informado.
+			</div>-->
+		
+			<form method="POST" th:object="${cliente}" class="form-vertical  js-form-loading">
+				
+				<div class="row">
+					<div class="col-sm-12  form-group">
+						<label for="nome">Nome</label>
+						<input name="nome" id="nome" type="text" class="form-control" autofocus="autofocus"/>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-4 form-group">
+						<label for="tipoPessoa">Tipo Pessoa</label>
+						<div>
+							<div class="radio  radio-inline">
+								<input type="radio" name="fisica"> 
+								<label>Física</label>
+							</div>
+							<div class="radio  radio-inline">
+								<input type="radio" name="juridica"> 
+								<label>Jurídica</label>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group col-sm-8">
+						<label for="cpfoucnpj">CPF/CNPJ</label>
+						<input type="text" id="cpfoucnpj" class="form-control"></input>
+					</div>
+					
+					
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-4 form-group">
+						<label for="telefone">Telefone</label>
+						<input name="telefone" type="text" id="telefone" class="form-control"></input>
+					</div>
+					
+					<div class="form-group col-sm-8">
+						<label for="email">E-MAIL</label>
+						<input type="text" id="email" class="form-control"></input>
+					</div>
+					
+				 </div>
+				 
+				 <div class="row">
+					<div class="col-sm-4 form-group">
+						<label for="logradouro">Logradouro</label>
+						<input name="logradouro" type="text" id="logradouro" class="form-control"></input>
+					</div>
+					
+					<div class="form-group col-sm-4">
+						<label for="numero">Número</label>
+						<input name="numero" type="text" id="numero" class="form-control"></input>
+					</div>
+					
+					<div class="form-group col-sm-4">
+						<label for="complemento">Complemento</label>
+						<input name="complemento" type="text" id="complemento" class="form-control"></input>
+					</div>
+					
+				  </div>
+				  
+				 <div class="row">
+					<div class="col-sm-4 form-group">
+						<label for="cep">CEP</label>
+						<input name="cep" type="text" id="cep" class="form-control"></input>
+					</div>
+					
+					<div class="col-sm-4 form-group">
+					
+						<label for="estado">Estado</label>
+							<select id="estado" class="form-control">
+								<option value=""> Selecione o estado</option>
+							</select>
+					</div>	
+					
+					<div class="col-sm-4 form-group">
+					
+						<label for="cidade">Cidade</label>
+							<select id="cidade" class="form-control">
+								<option value=""> Selecione o cidade</option>
+							</select>
+					</div>	
+					
+				  </div>
+					
+				
+				
+				
+				<div class="form-group">
+					<button class="btn  btn-primary" type="submit">Salvar</button>
+				</div>
+		
+			</form>
+		</div>
+		
+		<script>
+		function excluir() {
+			swal({
+				title: "Tem certeza?",
+				text: "Você não poderá recuperar o produto após a exclusão.",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Sim, exclua agora!",
+				closeOnConfirm: false,
+				showLoaderOnConfirm: true
+			}, function() {
+				setTimeout(function() {
+					swal("Excluído!", "O produto foi excluído com sucesso.", "success");
+				}, 2000);
+			});
+		}
+		</script>
+		
+		<div th:replace="estilo/cadastroRapido :: modal"></div>
+	</section>
+
+</body>
+</html>

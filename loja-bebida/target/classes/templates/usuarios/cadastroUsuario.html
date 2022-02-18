@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/layoutPadrao'">
+	
+<head>
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/stylesheets/vendors/bootstrap-switch.min.css}" />
+</head>
+
+
+<body>
+	<section class="aw-layout-content  js-content" layout:fragment="conteudo">
+
+
+		<div class="page-header">
+			<div class="container-fluid">
+				<h1>
+					Cadastro de Usuário
+				</h1>
+			</div>
+		</div>
+
+		<div class="container-fluid">
+		
+			<!--  <div class="alert  alert-danger  alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<i class="fa  fa-exclamation-circle"></i> Já existe um produto com o nome informado.
+			</div>-->
+		
+			<form method="POST" th:object="${usuario}" class="form-vertical  js-form-loading">
+				
+				<div class="row">
+					<div class="col-sm-12  form-group">
+						<label for="nome">Nome</label>
+						<input name="nome" id="nome" type="text" class="form-control" autofocus="autofocus"/>
+					</div>
+				</div>
+				
+				
+				<div class="row">
+				
+					<div class="form-group col-sm-6">
+						<label for="email">E-MAIL</label>
+						<input type="text" id="email" class="form-control"></input>
+					</div>
+					
+					<div class="col-sm-3 form-group">
+						<label for="dataNascimento">Data de Nascimento</label>
+						<input name="dataNascimento" type="text" id="dataNascimento" class="form-control"></input>
+					</div>
+					
+					
+				 </div>
+				 
+				 <div class="row">
+					<div class="col-sm-3 form-group">
+						<label for="senha">Senha</label>
+						<input name="senha" type="text" id="senha" class="form-control"></input>
+					</div>
+					
+					<div class="form-group col-sm-3">
+						<label for="conSenha">Confirmação de Senha</label>
+						<input name="confirmacaoSenha" type="text" id="conSenha" class="form-control"></input>
+					</div>
+					
+					<div class="form-group  col-sm-3">
+						<label class="control-label">Status</label>
+							<div>
+								<input type="checkbox" class="js-status" data-size="small" 
+									data-off-color="danger" data-on-text="ATIVO" data-off-text="INATIVO"/>
+							</div>
+					</div>
+					
+				  </div>
+				  
+				 <div class="row">
+					
+					<div class="form-group  col-sm-3">
+						<label class="control-label">Grupos</label>
+						<div>							
+							<div class="checkbox checkbox-inline">
+								<input type="checkbox"  />
+								<label>Administrador</label>
+								
+							</div>
+							<div class="checkbox checkbox-inline">
+								<input type="checkbox"  />
+								<label>Vendendor</label>
+							</div>
+						</div>
+						
+					</div>
+					
+				 </div>
+					
+				
+				
+			
+				<div class="form-group">
+					<button class="btn  btn-primary" type="submit">Salvar</button>
+				</div>
+			
+			</form>
+		</div>
+		
+		<script>
+		function excluir() {
+			swal({
+				title: "Tem certeza?",
+				text: "Você não poderá recuperar o produto após a exclusão.",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Sim, exclua agora!",
+				closeOnConfirm: false,
+				showLoaderOnConfirm: true
+			}, function() {
+				setTimeout(function() {
+					swal("Excluído!", "O produto foi excluído com sucesso.", "success");
+				}, 2000);
+			});
+		}
+		</script>
+		
+		<div th:replace="estilo/cadastroRapido :: modal"></div>
+	</section>
+
+	<th:block layout:fragment="js-extra">
+		<script th:src="@{/javascripts/vendors/bootstrap-switch.min.js}"></script>
+		
+		<script>
+			$('.js-status').bootstrapSwitch();
+		</script>
+	</th:block>
+
+</body>
+</html>
